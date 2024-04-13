@@ -7,6 +7,9 @@
 #Response:
 def convert_to_reversed_array(num):
     return [int(digit) for digit in str(num)[::-1]]
+#As the code was usable from the first attempt and all the tests were passed,
+#there was no point in changing the wording of the request. However, I did exactly
+#that just to make sure.
 
 #Request 2:
 # Convert number to reversed array of digits
@@ -35,4 +38,4 @@ def digitize(n):
     return [int(digit) for digit in str(abs(n))[::-1]]
 
 #on this try, the AI took the possibility of the number being negative into account and added an abs() to the function
-#the first function worked perfectly, so did the later ones
+#as it was said before, the first function worked perfectly, so did the later ones
