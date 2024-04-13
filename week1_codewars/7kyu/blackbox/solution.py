@@ -25,3 +25,38 @@ def is_isogram(word):
     return len(word) == len(set(word.lower()))
 
 # Test 2, Attempt 1, Result 50/50
+
+
+# Test 3 : using the tests provided
+
+# Write a function that can pass the following tests:
+# def fixed_tests():
+#     @test.it('Basic Test Cases')
+#     def basic_test_cases():      
+#         test.assert_equals(is_isogram("Dermatoglyphics"), True )
+#         test.assert_equals(is_isogram("isogram"), True )
+#         test.assert_equals(is_isogram("aba"), False, "same chars may not be adjacent" )
+#         test.assert_equals(is_isogram("moOse"), False, "same chars may not be same case" )
+#         test.assert_equals(is_isogram("isIsogram"), False )
+#         test.assert_equals(is_isogram(""), True, "an empty string is a valid isogram" )
+
+def is_isogram(word):
+    """
+    Returns True if the given word is an isogram, and False otherwise.
+    A word is an isogram if it does not have any repeating characters.
+    """
+    # Use a set to keep track of the characters we've seen so far
+    seen = set()
+    
+    # Iterate over each character in the word
+    for char in word.lower():
+        # If the character is alphanumeric and we've seen it before, return False
+        if char.isalnum() and char in seen:
+            return False
+        # Add the character to the set of seen characters
+        seen.add(char)
+    
+    # If we've made it through the entire word without returning False, return True
+    return True
+
+# Test 3, Attempt 1, Result 50/50
