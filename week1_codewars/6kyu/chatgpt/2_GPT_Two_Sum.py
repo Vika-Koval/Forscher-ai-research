@@ -1,4 +1,5 @@
 # Не проходить жоден тест
+# https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/python
 def two_sum(nums, target):
     # Create a dictionary to store the indices of numbers as we iterate through the array
     num_indices = {}
