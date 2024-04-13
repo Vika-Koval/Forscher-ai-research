@@ -11,17 +11,8 @@ def convert_to_reversed_array(num):
 #there was no point in changing the wording of the request. However, I did exactly
 #that just to make sure.
 
-#Request 2:
-# Convert number to reversed array of digits
-#Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
 
-# Example(Input => Output): 35231 => [1,3,2,5,3] 0 => [0]
-
-#Response:
-def convert_to_reversed_array(num):
-    return [int(digit) for digit in str(num)[::-1]]
-
-# Request 3:
+# Request 2:
 # Convert number to reversed array of digits 
 # Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
 
