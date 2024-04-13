@@ -60,3 +60,26 @@ def is_isogram(word):
     return True
 
 # Test 3, Attempt 1, Result 50/50
+
+
+# Test 4 : a very brief formulation of the prompt
+
+# write a function in python that checks if the word is an isogram
+
+def is_isogram(word):
+    return len(word) == len(set(word))
+
+# Test 4, Attempt 1, Result 45/50
+
+# you didn't consider that lowercase and uppercase letters are the same
+
+def is_isogram(word):
+    return len(word) == len(set(word.lower()))
+
+# Test 4, Attempt 2, Result 50/50
+
+
+# Conclusion : Blackbox AI did a decent job at this level of difficulty and almost passed 100% of the tests on the first try
+# The only time it failed was when a very short formulation of the prompt was provided
+# 3 of 4 functions were almost identical and had a similar approach 
+# Interestingly, test 3 was quite different and had a different approach when test cases were provided
