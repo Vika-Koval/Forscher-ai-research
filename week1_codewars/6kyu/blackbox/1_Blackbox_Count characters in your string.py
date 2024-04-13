@@ -1,5 +1,6 @@
+# https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/python
+
 def count(s):
-#     def count_chars(string):
     result = {}
     for char in s:
         if char in result:
