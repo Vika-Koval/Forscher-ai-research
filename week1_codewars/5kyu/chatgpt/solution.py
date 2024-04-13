@@ -27,6 +27,9 @@ def parse_molecule (formula):
 
 # var fremy_salt = 'K4[ON(SO3)2]2'
 # parse_molecule(fremySalt)             # return {K: 4, O: 14, N: 2, S: 4}
+# As you can see, some formulas have brackets in them. 
+# The index outside the brackets tells you that you have to multiply count of each atom inside the bracket on this index. 
+# For example, in Fe(NO3)2 you have one iron atom, two nitrogen atoms and six oxygen atoms.
 
 # GPT's answer:
 import re
