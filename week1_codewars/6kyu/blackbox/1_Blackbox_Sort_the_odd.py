@@ -1,4 +1,4 @@
-# Проходить все
+# https://www.codewars.com/kata/578aa45ee9fd15ff4600090d/train/python
 def sort_array(lst):
     sorted_odds = sorted([n for n in lst if n % 2])
     new_list = []
