@@ -25,3 +25,28 @@ def is_isogram(string):
     return True
 
 # Test 1, Attempt 1, Result 50/50
+
+
+# Test 2 : using just the example
+
+# Write a function in python that can do the following:
+# isIsogram "Dermatoglyphics" = true
+# isIsogram "moose" = false
+# isIsogram "aba" = false
+
+def is_isogram(word):
+    # Convert the word to lowercase to handle case sensitivity
+    word = word.lower()
+    
+    # Create a set to store unique characters
+    unique_chars = set()
+    
+    # Iterate through each character in the word
+    for char in word:
+        # If the character is already in the set, it's a repeat, return False
+        if char in unique_chars:
+            return False
+        # Otherwise, add it to the set
+        unique_chars.add(char)
+
+# Test 2, Attempt 1, Result 50/50
