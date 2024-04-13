@@ -1,4 +1,4 @@
-# Все пройшло
+# https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/python
 def sum_to_target(numbers, target):
     # First, we'll create a dictionary to store the indices of the numbers we've seen so far
     number_indices = {}
