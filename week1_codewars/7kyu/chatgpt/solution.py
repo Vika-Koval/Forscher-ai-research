@@ -1,11 +1,13 @@
 # link: https://www.codewars.com/kata/54ba84be607a92aa900000f1/train/python
 # Test 1 : using just the prompt provided
 
-# An isogram is a word that has no repeating letters, consecutive or non-
-# consecutive. Implement a function that determines whether a string that contains
-# only letters is an isogram. Assume the empty string is an isogram. Ignore letter 
-# case.
+# Request:
+    # An isogram is a word that has no repeating letters, consecutive or non-
+    # consecutive. Implement a function that determines whether a string that contains
+    # only letters is an isogram. Assume the empty string is an isogram. Ignore letter 
+    # case.
 
+# GPT's answer:
 def is_isogram(string):
     # Convert the string to lowercase to ignore letter case
     string = string.lower()
@@ -23,17 +25,18 @@ def is_isogram(string):
     
     # If the loop completes without returning False, the string is an isogram
     return True
-
 # Test 1, Attempt 1, Result 50/50
 
 
 # Test 2 : using just the example
 
-# Write a function in python that can do the following:
-# isIsogram "Dermatoglyphics" = true
-# isIsogram "moose" = false
-# isIsogram "aba" = false
+# Request:
+    # Write a function in python that can do the following:
+    # isIsogram "Dermatoglyphics" = true
+    # isIsogram "moose" = false
+    # isIsogram "aba" = false
 
+# GPT's answer:
 def is_isogram(word):
     # Convert the word to lowercase to handle case sensitivity
     word = word.lower()
@@ -48,23 +51,24 @@ def is_isogram(word):
             return False
         # Otherwise, add it to the set
         unique_chars.add(char)
-
 # Test 2, Attempt 1, Result 50/50
 
 
 # Test 3 : using the tests provided
 
-# Write a function that can pass the following tests:
-# def fixed_tests():
-#     @test.it('Basic Test Cases')
-#     def basic_test_cases():      
-#         test.assert_equals(is_isogram("Dermatoglyphics"), True )
-#         test.assert_equals(is_isogram("isogram"), True )
-#         test.assert_equals(is_isogram("aba"), False, "same chars may not be adjacent" )
-#         test.assert_equals(is_isogram("moOse"), False, "same chars may not be same case" )
-#         test.assert_equals(is_isogram("isIsogram"), False )
-#         test.assert_equals(is_isogram(""), True, "an empty string is a valid isogram" )
+# Request:
+    # Write a function that can pass the following tests:
+    # def fixed_tests():
+    #     @test.it('Basic Test Cases')
+    #     def basic_test_cases():      
+    #         test.assert_equals(is_isogram("Dermatoglyphics"), True )
+    #         test.assert_equals(is_isogram("isogram"), True )
+    #         test.assert_equals(is_isogram("aba"), False, "same chars may not be adjacent" )
+    #         test.assert_equals(is_isogram("moOse"), False, "same chars may not be same case" )
+    #         test.assert_equals(is_isogram("isIsogram"), False )
+    #         test.assert_equals(is_isogram(""), True, "an empty string is a valid isogram" )
 
+# GPT's answer:
 def is_isogram(string):
     # Convert string to lowercase to handle case insensitivity
     string = string.lower()
@@ -85,14 +89,15 @@ def is_isogram(string):
     
     # If all characters are unique, it's an isogram
     return True
-
 # Test 3, Attempt 1, Result 50/50
 
 
 # Test 4 : a very brief formulation of the prompt
 
-# write a function in python that checks if the word is an isogram
+# Request:
+    # write a function in python that checks if the word is an isogram
 
+# GPT's answer:
 def is_isogram(word):
     # Convert the word to lowercase to make the comparison case-insensitive
     word = word.lower()
@@ -111,7 +116,6 @@ def is_isogram(word):
     
     # If the loop completes without returning False, the word is an isogram
     return True
-
 # Test 4, Attempt 1, Result 50/50
 
 
