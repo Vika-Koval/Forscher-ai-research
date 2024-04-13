@@ -1,5 +1,5 @@
+# https://www.codewars.com/kata/54b42f9314d9229fd6000d9c/train/python
 def duplicate_encode(s):
-#     def duplicate_encoder(s):
     # Convert the input string to lowercase
     s_lower = s.lower()
     
