@@ -12,17 +12,6 @@ def calculate_average(numbers):
 
 # Note: Empty arrays should return 0.
 
-#Response:
-def calculate_average(numbers):
-    if not numbers:
-        return 0
-    return sum(numbers) / len(numbers)
-
-#Request 3:
-# Write a function which calculates the average of the numbers in a given list.
-
-# Note: Empty arrays should return 0.
-
 # These tests should pass: test.assert_equals(find_average([1, 2, 3]), 2, "Failed for [1, 2, 3]")
 # test.assert_equals(find_average([]), 0, "Failed for []") 
 # test.assert_approx_equals(find_average([1, 2]), 1.5, margin=1e-3, message="Failed for [1, 2]")
@@ -33,7 +22,7 @@ def find_average(numbers):
         return 0
     return sum(numbers) / len(numbers)
 
-#there was also a bunch of code that tested various examples, not important enough though
+#There was also a bunch of code that tested various examples, not important enough though
 #as this AI just steals code from github, codewars etc, it can "solve" a lot of problems easily
 #however, its first attempt at solving this problem was unsuccessful either because it didn't think
 #about the possibility of the list being empty or because the code it stole didn't take that into account
