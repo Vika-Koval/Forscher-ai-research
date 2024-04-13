@@ -1,6 +1,5 @@
-# З першого разу
+# https://www.codewars.com/kata/52efefcbcdf57161d4000091/train/python
 def count(s):
-#     def count_characters(s):
     # Initialize an empty dictionary to store character counts
     char_count = {}
 
