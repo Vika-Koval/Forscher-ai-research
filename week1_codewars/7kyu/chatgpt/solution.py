@@ -87,3 +87,34 @@ def is_isogram(string):
     return True
 
 # Test 3, Attempt 1, Result 50/50
+
+
+# Test 4 : a very brief formulation of the prompt
+
+# write a function in python that checks if the word is an isogram
+
+def is_isogram(word):
+    # Convert the word to lowercase to make the comparison case-insensitive
+    word = word.lower()
+    
+    # Create a set to store unique letters encountered
+    unique_letters = set()
+    
+    # Iterate through each letter in the word
+    for letter in word:
+        # If the letter is already in the set, it's a repeated letter, so return False
+        if letter in unique_letters:
+            return False
+        # Otherwise, add the letter to the set
+        else:
+            unique_letters.add(letter)
+    
+    # If the loop completes without returning False, the word is an isogram
+    return True
+
+# Test 4, Attempt 1, Result 50/50
+
+
+# Conclusion : ChatGPT did a great job at this level and passed 100% of the tests on the first try
+# All of the functions that were generated were almost identical but in test 3 the answer was slightly different
+# probably because more details and test cases were provided
