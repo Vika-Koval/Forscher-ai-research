@@ -1,3 +1,4 @@
+# https://www.codewars.com/kata/5208f99aee097e6552000148
 # Код з GPT, достатньо було тільки умови
 def break_camel_case(s):
     # Initialize an empty result string
