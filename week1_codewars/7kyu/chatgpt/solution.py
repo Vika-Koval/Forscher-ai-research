@@ -50,3 +50,40 @@ def is_isogram(word):
         unique_chars.add(char)
 
 # Test 2, Attempt 1, Result 50/50
+
+
+# Test 3 : using the tests provided
+
+# Write a function that can pass the following tests:
+# def fixed_tests():
+#     @test.it('Basic Test Cases')
+#     def basic_test_cases():      
+#         test.assert_equals(is_isogram("Dermatoglyphics"), True )
+#         test.assert_equals(is_isogram("isogram"), True )
+#         test.assert_equals(is_isogram("aba"), False, "same chars may not be adjacent" )
+#         test.assert_equals(is_isogram("moOse"), False, "same chars may not be same case" )
+#         test.assert_equals(is_isogram("isIsogram"), False )
+#         test.assert_equals(is_isogram(""), True, "an empty string is a valid isogram" )
+
+def is_isogram(string):
+    # Convert string to lowercase to handle case insensitivity
+    string = string.lower()
+    
+    # Set to store characters encountered
+    char_set = set()
+    
+    # Iterate through each character in the string
+    for char in string:
+        # Check if character is alphabetic
+        if char.isalpha():
+            # If character is already in the set, it's not an isogram
+            if char in char_set:
+                return False
+            # Otherwise, add it to the set
+            else:
+                char_set.add(char)
+    
+    # If all characters are unique, it's an isogram
+    return True
+
+# Test 3, Attempt 1, Result 50/50
