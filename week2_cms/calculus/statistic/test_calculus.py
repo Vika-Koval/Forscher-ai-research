@@ -106,6 +106,23 @@ end = time.time()
 
 print((end - start)*10)
 # time = 4.185287952423096
+def main_code():
+    start = time.time()
+    for _ in range(10000):
+        a = find_max_1(lambda x: x ** 2 + x, [1, 2, 3, -1])
+        b = find_max_2(lambda x: x ** 2 + x, [1, 2, 3, -1])
+        c = find_max_2(lambda x: x ** 2 + x, [1, 6, 3, -1])
+        d = compute_limit(lambda n: (n ** 2 + n) / n ** 2)
+        e = compute_limit(lambda n: (2*n ** 2 + n) / (4*n**2))
+        g = compute_derivative(lambda x: x ** 2 + x, 2)
+        w = get_tangent(lambda x: x ** 2 + x, 2)
+        s = get_tangent(lambda x: - x ** 2 + x, 2)
+        x = get_root(lambda x: x, -1, 1)
+        p = get_root(lambda x: x-2, -4, 6)
+    end = time.time()
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage)) 
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.2578125
 
 
 
@@ -114,6 +131,8 @@ print((end - start)*10)
 import functools
 import math
 from typing import Callable, List
+from memory_profiler import memory_usage
+import time
 
 
 def find_max_1(f: Callable[[float], float], points: List[float]) -> float:
@@ -206,16 +225,33 @@ end = time.time()
 
 print((end - start)*10)
 # time = 4.327948093414307
+def main_code():
+    start = time.time()
+    for _ in range(10000):
+        a = find_max_1(lambda x: x ** 2 + x, [1, 2, 3, -1])
+        b = find_max_2(lambda x: x ** 2 + x, [1, 2, 3, -1])
+        c = find_max_2(lambda x: x ** 2 + x, [1, 6, 3, -1])
+        d = compute_limit(lambda n: (n ** 2 + n) / n ** 2)
+        e = compute_limit(lambda n: (2*n ** 2 + n) / (4*n**2))
+        g = compute_derivative(lambda x: x ** 2 + x, 2)
+        w = get_tangent(lambda x: x ** 2 + x, 2)
+        s = get_tangent(lambda x: - x ** 2 + x, 2)
+        x = get_root(lambda x: x, -1, 1)
+        p = get_root(lambda x: x-2, -4, 6)
+    end = time.time()
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage)) 
+# Memory_profiler returned: Maximum memory usage (in MiB): 59.578125
 
-
-#So, chat gpt's version is a bit faster
+#So, chat gpt's version is a bit faster and spend less storage
 
 
 
 
 
 #My code:
-
+import time
+from memory_profiler import memory_usage
 
 """
 This module consists of functions for calculation.
@@ -347,3 +383,20 @@ end = time.time()
 
 print((end - start)*10)
 # time = 7.883515357971191
+def main_code():
+    start = time.time()
+    for _ in range(10000):
+        a = find_max_1(lambda x: x ** 2 + x, [1, 2, 3, -1])
+        b = find_max_2(lambda x: x ** 2 + x, [1, 2, 3, -1])
+        c = find_max_2(lambda x: x ** 2 + x, [1, 6, 3, -1])
+        d = compute_limit(lambda n: (n ** 2 + n) / n ** 2)
+        e = compute_limit(lambda n: (2*n ** 2 + n) / (4*n**2))
+        g = compute_derivative(lambda x: x ** 2 + x, 2)
+        w = get_tangent(lambda x: x ** 2 + x, 2)
+        s = get_tangent(lambda x: - x ** 2 + x, 2)
+        x = get_root(lambda x: x, -1, 1)
+        p = get_root(lambda x: x-2, -4, 6)
+    end = time.time()
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage)) 
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.44921875
