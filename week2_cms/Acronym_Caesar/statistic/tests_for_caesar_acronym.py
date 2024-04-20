@@ -1,8 +1,6 @@
-import time
-
-
 #gpt:
-
+import time
+from memory_profiler import memory_usage
 def create_acronym(message: str) -> str: 
     """
     Create acronyms from a given message.
@@ -100,11 +98,25 @@ end = time.time()
 print((end - start)*5000000)
 
 #time for gpt = 5009.174346923828
+def main_code():
+
+    start = time.time()
+    for _ in range(100):
+        create_acronym("random access memory\nAs soon As possible")
+    for _ in range(100):
+        caesar_decode('abcdefgh', 3)
+    for _ in range(100):
+        caesar_encode('abcdefgh', 3)
+    end = time.time()
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage))
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.3515625
 
 
 
 #Blackbox:
-
+import time
+from memory_profiler import memory_usage
 def create_acronym (message:str)->str:
     """
     In this function we are creating acronym
@@ -217,20 +229,31 @@ end = time.time()
 print((end - start)*5000000)
 
 #time for blackbox = 4814.863204956055
+def main_code():
 
-
-
-
-
+    start = time.time()
+    for _ in range(100):
+        create_acronym("random access memory\nAs soon As possible")
+    for _ in range(100):
+        caesar_decode('abcdefgh', 3)
+    for _ in range(100):
+        caesar_encode('abcdefgh', 3)
+    end = time.time()
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage))
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.14453125
 
 
 #my code:
+
 """
 This module converts a sentence to ceasar code and back.
 """
 """
 create acronym
 """
+import time
+from memory_profiler import memory_usage
 def create_acronym (message:str)->str:
     """
     In this function we are creating acronym
@@ -329,5 +352,18 @@ end = time.time()
 print((end - start)*5000000)
 
 #time for my code = 8735.65673828125
+def main_code():
+
+    start = time.time()
+    for _ in range(100):
+        create_acronym("random access memory\nAs soon As possible")
+    for _ in range(100):
+        caesar_decode('abcdefgh', 3)
+    for _ in range(100):
+        caesar_encode('abcdefgh', 3)
+    end = time.time()
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage))
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.52734375
 
 #time for ai's versions is better than for mine
