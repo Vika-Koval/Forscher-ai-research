@@ -1,5 +1,5 @@
 import time
-
+from memory_profiler import memory_usage
 
 #gpt:
 """
@@ -447,11 +447,175 @@ end = time.time()
 print((end - start)*5000000)
 
 #time = 4806.5185546875
+def main_code():
 
+    start = time.time()
+
+
+    RECIPE = {
+            "espresso": {
+                'espresso': 30},
+            "latte": {
+                'espresso': 60,
+                'steamed_milk': 120, 
+                'foamed_milk': 15},
+            "macchiato": {
+                'espresso': 60,
+                'foamed_milk': 15},
+            "flat white": {
+                'espresso': 60,
+                'steamed_milk': 120},
+            "dopio": {
+                'espresso': 60},
+            "cappuccino": {
+                'espresso': 60,
+                'steamed_milk': 60, 
+                'foamed_milk': 60},
+            "lungo": {
+                'espresso': 90},
+            "cortado": {
+                'espresso': 60,
+                'steamed_milk': 60}
+                }
+
+
+    print("Testing Cafeteria class...")
+    # We track the orders during the day
+    day_track = Track('07.02.2024')
+    day_track.date = '07.02.2024'
+    # Our cafeteria has a lot of different beverages in the menu and
+    # all of them are connected to coffee.
+    # The cafeteria use classical RECIPE that provided as a 
+    # constant.
+    order1 = Coffee('latte')
+    print(str(order1) )
+    # We need to set the recipe before creating the instances.
+    print(order1.__dict__ )
+    Coffee.set_recipe(RECIPE)
+    # A client can order only some kind of coffee.
+    order1 = Coffee('latte', 2)
+    print(order1.name)
+    print(order1.count)
+    # also when the client ask for some order the is_paid attribute is
+    # created and it is False from the start.
+    print(order1.is_paid)
+    # Coffee have three main ingredients that provide variety of the drinks:
+    # espresso, steamed milk and foamed milk. But on the side of the client we 
+    # provide only name of the drink and total amount of espresso
+    # and milk in ml.
+    print(order1.espresso)
+    print(order1.milk)
+    print(Coffee._Coffee__recipe[order1.name] )
+    print( str(order1) )
+    #now we are ready to place this order
+    print(Track.MENU )
+    print(day_track.place_order(order1) )
+    print(order1.price )
+    print(order1.is_paid )
+    print(str(order1) )
+    print(len(day_track.orders) )
+    # it is possible that we have a coffee in recipe but 
+    # don't have in a menu
+    order2 = Coffee("macchiato")
+    print(str(order2))
+    print(order2.__dict__ )
+    print(day_track.place_order(order2))
+    print(len(day_track.orders))
+    order2 = Coffee("mocca")
+    print(str(order2) )
+    print(order2.__dict__)
+    # Each customer can ask for adding sugar, cinammon or syrup 
+    # thus creating custom coffee.
+    order2 = CustomCoffee('cappuccino')
+    print(isinstance(order2, CustomCoffee))
+    print(isinstance(order2, Coffee))
+    print(isinstance(order2, FlavorMixin))
+    print(isinstance(order1, CustomCoffee))
+    print(isinstance(order1, FlavorMixin))
+    print(order2.name)
+    print(order2.count)
+    print(order2.espresso)
+    print(order2.milk)
+    print(order2.flavor)
+    print(day_track.place_order(order2))
+    print(len(day_track.orders))
+    print(str(order2))
+    print(order2.price)
+    print(order2.add_flavor(2, True, 'almond'))
+    print(order2.sugar)
+    print(order2.cinammon)
+    print(order2.syrup)
+    print(str(order2))
+    #of course we track the orders
+    print(str(day_track.orders))
+    print(day_track.total_revenue())
+    print(day_track.total_milk())
+    #we need approx 6 grams of coffee beans to prepare 
+    # one espresso
+    print(day_track.total_beans())
+    print(not isinstance(order2, Track))
+    # of course we have some reserves of milk and beans
+    # but they are limited. At the beginning of the day we usually
+    #have 20 litres of milk and 5 kg of beans
+    print(Track._Track__beans)
+    print(Track._Track__milk )
+    print(day_track.beans)
+    print(day_track.milk )
+    order3 = Coffee('Irish Coffee', 3)
+    # unfortunately we don't have this kind of drinks
+    # please let our customer know about it
+    print(day_track.orders == [order1, order2])
+    order3 = CustomCoffee('latte', 2)
+    print(order3 == order1)
+    print(order3.add_flavor(3, False, 'green banana'))
+    print(day_track.place_order(order3))
+    print(order3.add_flavor(3, False, 'green banana'))
+    print(order3.sugar)
+    print(str(order3))
+    print(order3 != order1)
+
+    # Sometimes we have situation when the milk spoiled
+    # in grams
+    day_track.milk_spoil(19340)
+    print(day_track.milk)
+    order4 = Coffee('latte', 2)
+    print(day_track.place_order(order4))
+    print(len(day_track.orders))
+    #oneday our founder bought new fridge
+    # and we can store more milk
+    Track.set_limit_milk(30000)
+    print(Track._Track__milk)
+
+
+    order5 = "Coffee"
+    print(isinstance(order5, CustomCoffee))
+    print(day_track.place_order(order5))
+    #and sure we don't work in air alert time
+    Track.change_air_state()
+    print(Track.safety)
+    order6 = CustomCoffee('lungo', 2)
+    print(day_track.place_order(order6))
+    Track.change_air_state()
+    print(Track.safety)
+    order6 = CustomCoffee('lungo')
+    print(str(order6))
+    print(day_track.place_order(order6))
+    print(day_track.total_revenue())
+    print(day_track.total_milk())
+    print( day_track.total_beans())
+    print('Done!')
+
+    end = time.time()
+
+    print((end - start)*5000000)
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage))
+# Memory_profiler returned: Maximum memory usage (in MiB): 44.11328125
 
 
 #Blackbox:
-
+import time
+from memory_profiler import memory_usage
 class Track():
     """
     Tracks orders
@@ -849,6 +1013,170 @@ end = time.time()
 print((end - start)*5000000)
 
 #time = 5011.558532714844
+def main_code():
+
+    start = time.time()
+
+
+    RECIPE = {
+            "espresso": {
+                'espresso': 30},
+            "latte": {
+                'espresso': 60,
+                'steamed_milk': 120, 
+                'foamed_milk': 15},
+            "macchiato": {
+                'espresso': 60,
+                'foamed_milk': 15},
+            "flat white": {
+                'espresso': 60,
+                'steamed_milk': 120},
+            "dopio": {
+                'espresso': 60},
+            "cappuccino": {
+                'espresso': 60,
+                'steamed_milk': 60, 
+                'foamed_milk': 60},
+            "lungo": {
+                'espresso': 90},
+            "cortado": {
+                'espresso': 60,
+                'steamed_milk': 60}
+                }
+
+
+    print("Testing Cafeteria class...")
+    # We track the orders during the day
+    day_track = Track('07.02.2024')
+    day_track.date = '07.02.2024'
+    # Our cafeteria has a lot of different beverages in the menu and
+    # all of them are connected to coffee.
+    # The cafeteria use classical RECIPE that provided as a 
+    # constant.
+    order1 = Coffee('latte')
+    print(str(order1) )
+    # We need to set the recipe before creating the instances.
+    print(order1.__dict__ )
+    Coffee.set_recipe(RECIPE)
+    # A client can order only some kind of coffee.
+    order1 = Coffee('latte', 2)
+    print(order1.name)
+    print(order1.count)
+    # also when the client ask for some order the is_paid attribute is
+    # created and it is False from the start.
+    print(order1.is_paid)
+    # Coffee have three main ingredients that provide variety of the drinks:
+    # espresso, steamed milk and foamed milk. But on the side of the client we 
+    # provide only name of the drink and total amount of espresso
+    # and milk in ml.
+    print(order1.espresso)
+    print(order1.milk)
+    print(Coffee._Coffee__recipe[order1.name] )
+    print( str(order1) )
+    #now we are ready to place this order
+    print(Track.MENU )
+    print(day_track.place_order(order1) )
+    print(order1.price )
+    print(order1.is_paid )
+    print(str(order1) )
+    print(len(day_track.orders) )
+    # it is possible that we have a coffee in recipe but 
+    # don't have in a menu
+    order2 = Coffee("macchiato")
+    print(str(order2))
+    print(order2.__dict__ )
+    print(day_track.place_order(order2))
+    print(len(day_track.orders))
+    order2 = Coffee("mocca")
+    print(str(order2) )
+    print(order2.__dict__)
+    # Each customer can ask for adding sugar, cinammon or syrup 
+    # thus creating custom coffee.
+    order2 = CustomCoffee('cappuccino')
+    print(isinstance(order2, CustomCoffee))
+    print(isinstance(order2, Coffee))
+    print(isinstance(order2, FlavorMixin))
+    print(isinstance(order1, CustomCoffee))
+    print(isinstance(order1, FlavorMixin))
+    print(order2.name)
+    print(order2.count)
+    print(order2.espresso)
+    print(order2.milk)
+    print(order2.flavor)
+    print(day_track.place_order(order2))
+    print(len(day_track.orders))
+    print(str(order2))
+    print(order2.price)
+    print(order2.add_flavor(2, True, 'almond'))
+    print(order2.sugar)
+    print(order2.cinammon)
+    print(order2.syrup)
+    print(str(order2))
+    #of course we track the orders
+    print(str(day_track.orders))
+    print(day_track.total_revenue())
+    print(day_track.total_milk())
+    #we need approx 6 grams of coffee beans to prepare 
+    # one espresso
+    print(day_track.total_beans())
+    print(not isinstance(order2, Track))
+    # of course we have some reserves of milk and beans
+    # but they are limited. At the beginning of the day we usually
+    #have 20 litres of milk and 5 kg of beans
+    print(Track._Track__beans)
+    print(Track._Track__milk )
+    print(day_track.beans)
+    print(day_track.milk )
+    order3 = Coffee('Irish Coffee', 3)
+    # unfortunately we don't have this kind of drinks
+    # please let our customer know about it
+    print(day_track.orders == [order1, order2])
+    order3 = CustomCoffee('latte', 2)
+    print(order3 == order1)
+    print(order3.add_flavor(3, False, 'green banana'))
+    print(day_track.place_order(order3))
+    print(order3.add_flavor(3, False, 'green banana'))
+    print(order3.sugar)
+    print(str(order3))
+    print(order3 != order1)
+
+    # Sometimes we have situation when the milk spoiled
+    # in grams
+    day_track.milk_spoil(19340)
+    print(day_track.milk)
+    order4 = Coffee('latte', 2)
+    print(day_track.place_order(order4))
+    print(len(day_track.orders))
+    #oneday our founder bought new fridge
+    # and we can store more milk
+    Track.set_limit_milk(30000)
+    print(Track._Track__milk)
+
+
+    order5 = "Coffee"
+    print(isinstance(order5, CustomCoffee))
+    print(day_track.place_order(order5))
+    #and sure we don't work in air alert time
+    Track.change_air_state()
+    print(Track.safety)
+    order6 = CustomCoffee('lungo', 2)
+    print(day_track.place_order(order6))
+    Track.change_air_state()
+    print(Track.safety)
+    order6 = CustomCoffee('lungo')
+    print(str(order6))
+    print(day_track.place_order(order6))
+    print(day_track.total_revenue())
+    print(day_track.total_milk())
+    print( day_track.total_beans())
+    print('Done!')
+
+    end = time.time()
+
+    print((end - start)*5000000)
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage))
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.8125
 
 
 
@@ -857,7 +1185,8 @@ print((end - start)*5000000)
 """
 This module takes coffee order
 """
-
+import time
+from memory_profiler import memory_usage
 RECIPE = {
         "espresso": {
             'espresso': 30},
@@ -1289,3 +1618,167 @@ end = time.time()
 print((end - start)*5000000)
 
 #time = 5393.028259277344
+def main_code():
+
+    start = time.time()
+
+
+    RECIPE = {
+            "espresso": {
+                'espresso': 30},
+            "latte": {
+                'espresso': 60,
+                'steamed_milk': 120, 
+                'foamed_milk': 15},
+            "macchiato": {
+                'espresso': 60,
+                'foamed_milk': 15},
+            "flat white": {
+                'espresso': 60,
+                'steamed_milk': 120},
+            "dopio": {
+                'espresso': 60},
+            "cappuccino": {
+                'espresso': 60,
+                'steamed_milk': 60, 
+                'foamed_milk': 60},
+            "lungo": {
+                'espresso': 90},
+            "cortado": {
+                'espresso': 60,
+                'steamed_milk': 60}
+                }
+
+
+    print("Testing Cafeteria class...")
+    # We track the orders during the day
+    day_track = Track('07.02.2024')
+    day_track.date = '07.02.2024'
+    # Our cafeteria has a lot of different beverages in the menu and
+    # all of them are connected to coffee.
+    # The cafeteria use classical RECIPE that provided as a 
+    # constant.
+    order1 = Coffee('latte')
+    print(str(order1) )
+    # We need to set the recipe before creating the instances.
+    print(order1.__dict__ )
+    Coffee.set_recipe(RECIPE)
+    # A client can order only some kind of coffee.
+    order1 = Coffee('latte', 2)
+    print(order1.name)
+    print(order1.count)
+    # also when the client ask for some order the is_paid attribute is
+    # created and it is False from the start.
+    print(order1.is_paid)
+    # Coffee have three main ingredients that provide variety of the drinks:
+    # espresso, steamed milk and foamed milk. But on the side of the client we 
+    # provide only name of the drink and total amount of espresso
+    # and milk in ml.
+    print(order1.espresso)
+    print(order1.milk)
+    print(Coffee._Coffee__recipe[order1.name] )
+    print( str(order1) )
+    #now we are ready to place this order
+    print(Track.MENU )
+    print(day_track.place_order(order1) )
+    print(order1.price )
+    print(order1.is_paid )
+    print(str(order1) )
+    print(len(day_track.orders) )
+    # it is possible that we have a coffee in recipe but 
+    # don't have in a menu
+    order2 = Coffee("macchiato")
+    print(str(order2))
+    print(order2.__dict__ )
+    print(day_track.place_order(order2))
+    print(len(day_track.orders))
+    order2 = Coffee("mocca")
+    print(str(order2) )
+    print(order2.__dict__)
+    # Each customer can ask for adding sugar, cinammon or syrup 
+    # thus creating custom coffee.
+    order2 = CustomCoffee('cappuccino')
+    print(isinstance(order2, CustomCoffee))
+    print(isinstance(order2, Coffee))
+    print(isinstance(order2, FlavorMixin))
+    print(isinstance(order1, CustomCoffee))
+    print(isinstance(order1, FlavorMixin))
+    print(order2.name)
+    print(order2.count)
+    print(order2.espresso)
+    print(order2.milk)
+    print(order2.flavor)
+    print(day_track.place_order(order2))
+    print(len(day_track.orders))
+    print(str(order2))
+    print(order2.price)
+    print(order2.add_flavor(2, True, 'almond'))
+    print(order2.sugar)
+    print(order2.cinammon)
+    print(order2.syrup)
+    print(str(order2))
+    #of course we track the orders
+    print(str(day_track.orders))
+    print(day_track.total_revenue())
+    print(day_track.total_milk())
+    #we need approx 6 grams of coffee beans to prepare 
+    # one espresso
+    print(day_track.total_beans())
+    print(not isinstance(order2, Track))
+    # of course we have some reserves of milk and beans
+    # but they are limited. At the beginning of the day we usually
+    #have 20 litres of milk and 5 kg of beans
+    print(Track._Track__beans)
+    print(Track._Track__milk )
+    print(day_track.beans)
+    print(day_track.milk )
+    order3 = Coffee('Irish Coffee', 3)
+    # unfortunately we don't have this kind of drinks
+    # please let our customer know about it
+    print(day_track.orders == [order1, order2])
+    order3 = CustomCoffee('latte', 2)
+    print(order3 == order1)
+    print(order3.add_flavor(3, False, 'green banana'))
+    print(day_track.place_order(order3))
+    print(order3.add_flavor(3, False, 'green banana'))
+    print(order3.sugar)
+    print(str(order3))
+    print(order3 != order1)
+
+    # Sometimes we have situation when the milk spoiled
+    # in grams
+    day_track.milk_spoil(19340)
+    print(day_track.milk)
+    order4 = Coffee('latte', 2)
+    print(day_track.place_order(order4))
+    print(len(day_track.orders))
+    #oneday our founder bought new fridge
+    # and we can store more milk
+    Track.set_limit_milk(30000)
+    print(Track._Track__milk)
+
+
+    order5 = "Coffee"
+    print(isinstance(order5, CustomCoffee))
+    print(day_track.place_order(order5))
+    #and sure we don't work in air alert time
+    Track.change_air_state()
+    print(Track.safety)
+    order6 = CustomCoffee('lungo', 2)
+    print(day_track.place_order(order6))
+    Track.change_air_state()
+    print(Track.safety)
+    order6 = CustomCoffee('lungo')
+    print(str(order6))
+    print(day_track.place_order(order6))
+    print(day_track.total_revenue())
+    print(day_track.total_milk())
+    print( day_track.total_beans())
+    print('Done!')
+
+    end = time.time()
+
+    print((end - start)*5000000)
+mem_usage = memory_usage(main_code)
+print("Maximum memory usage (in MiB):", max(mem_usage))
+# Memory_profiler returned: Maximum memory usage (in MiB): 43.8359375
