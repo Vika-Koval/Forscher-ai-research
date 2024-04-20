@@ -291,7 +291,8 @@ def read_file(file_path):
     and returns a dictionary.
     '''
     with open(file_path, 'r', encoding='utf-8') as file:
-        return {line.split(',')[0]: int(line.split(',')[1].strip()) for line in file if len(line.split(',')) == 2}
+        return {line.split(',')[0]: int(line.split(',')[1].\
+strip()) for line in file if len(line.split(',')) == 2}
 def rescue_people(smarties, limit_iq):
     '''
     (dict,int)->tuple
