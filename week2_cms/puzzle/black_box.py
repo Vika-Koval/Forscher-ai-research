@@ -1,3 +1,4 @@
+# Problem: https://cms.ucu.edu.ua/mod/vpl/view.php?id=330760
 """puzzle function"""
 
 import time
