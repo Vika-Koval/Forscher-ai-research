@@ -2,7 +2,8 @@
 puzzle function
 """
 import time
-import psutil
+# import psutil
+from memory_profiler import memory_usage
 
 def validate_board(board:list) -> bool:
     """
@@ -82,19 +83,15 @@ def validate_board(board:list) -> bool:
 
 if __name__ == "__main__":
     t0 = time.monotonic()
-    cpu0 = psutil.cpu_percent()
-    memory0 = psutil.virtual_memory().percent
-    validate_board(["**** ****", "***1 ****", "**  3****", "* 4 1****", "     9 5 ", " 6  83  *", "3   1  **", "  8  2***", "  2  ****"])
+    # Викликаємо функцію для вимірювання пам'яті
+    mem_usage = memory_usage((validate_board, (["**** ****", "***1 ****", "**  3****", "* 4 1****", "     9 5 ", " 6  83  *", "3   1  **", "  8  2***", "  2  ****"],)), interval=0.1)
     t1 = time.monotonic()
-    cpu1 = psutil.cpu_percent()
-    memory1 = psutil.virtual_memory().percent
-    dt = t1-t0
-    dcpu = cpu1-cpu0
-    dmemory = memory1-memory0
-    print(dt)
-    print(dcpu)
-    print(dmemory)
+    dt = t1 - t0
+    mem_used = max(mem_usage) - min(mem_usage)  # Різниця між максимальним та мінімальним значенням
+    mem_usage_kb = [round(mem * 1024) for mem in mem_usage]
+    total_memory_kb = sum(mem_usage_kb)
+    print(f"Використано пам'яті: {total_memory_kb} KB")
+    print("Час виконання:", dt)
 
-    # 0.015000000013969839
-    # 7.1
-    # 0.0
+# Використано пам'яті: 408928 KB
+# Час виконання: 1.827999999979511
