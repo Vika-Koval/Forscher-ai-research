@@ -253,7 +253,8 @@ def read_file(file_path):
     and returns a dictionary.
     '''
     with open(file_path,'r',encoding='utf-8') as en:
-        smarties = {line.strip().split(',')[0]: int(line.strip().split(',')[1]) for line in en if len(line.strip().split(',')) == 2}
+        smarties = {line.strip().split(',')[0]: int(line.strip().split(',')[1]) for\
+line in en if len(line.strip().split(',')) == 2}
     return smarties
 def rescue_people(smarties, limit_iq):
     '''
@@ -276,16 +277,17 @@ def rescue_people(smarties, limit_iq):
         return 0, []
     while smarties:
         lst1 = []
-        remaining_iq = limit_iq1  
+        remaining_iq = limit_iq1
         for key, value in list(smarties.items()):
             if value <= remaining_iq:
                 lst1.append(key)
                 remaining_iq -= value
                 smarties.pop(key)
-        if not lst1: 
+        if not lst1:
             break
         lst2.append(lst1)
     return len(lst2), lst2
+
 
 
 
