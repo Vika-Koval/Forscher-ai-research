@@ -1,3 +1,4 @@
+# Problem: https://cms.ucu.edu.ua/mod/vpl/view.php?id=330760
 """
 GPT створив додаткову функцію для перевірки валідності значень, але іноді використовува її без потреби
 Sudoku Puzzle Validation Module
