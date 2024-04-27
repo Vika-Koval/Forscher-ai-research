@@ -360,60 +360,77 @@ if __name__ == '__main__':
     # for instance, group the different functions into one if necessary and remove unnecessary tests for better speed. you can try using setup and teardown
     # GPT's response:
 import unittest
-from line import Line, Point
+from sajjsa import Line, Point
+
 class TestLineIntersection(unittest.TestCase):
     def setUp(self):
-        self.line1 = Line(Point(0, 0), Point(1, 1))
-        self.line2 = Line(Point(0, 1), Point(1, 2))
+        self.parallel_lines = Line(Point(0, 0), Point(1, 1)), Line(Point(0, 1), Point(1, 2))
+        self.perpendicular_lines = Line(Point(0, 0), Point(1, 0)), Line(Point(0, 1), Point(1, 1))
+        self.intersection_point = Line(Point(0, 0), Point(2, 2)), Line(Point(0, 2), Point(2, 0))
+        self.identical_lines = Line(Point(0, 0), Point(2, 2)), Line(Point(0, 0), Point(2, 2))
+        self.coincident_lines = Line(Point(0, 0), Point(1, 1)), Line(Point(0, 0), Point(1, 1))
+        self.vertical_horizontal_lines = Line(Point(0, 0), Point(0, 2)), Line(Point(-1, 1), Point(1, 1))
+        self.negative_slope_lines = Line(Point(1, 3), Point(3, 1)), Line(Point(1, 1), Point(3, 3))
+        self.zero_slope_intersecting_lines = Line(Point(1, 1), Point(3, 1)), Line(Point(2, 2), Point(4, 2))
+        self.vertical_lines_same_x = Line(Point(1, 0), Point(1, 2)), Line(Point(1, 1), Point(1, 3))
+        self.horizontal_lines_same_y = Line(Point(0, 1), Point(2, 1)), Line(Point(1, 1), Point(3, 1))
     def tearDown(self):
-        del self.line1
-        del self.line2
+        del self.parallel_lines
+        del self.perpendicular_lines
+        del self.intersection_point
+        del self.identical_lines
+        del self.coincident_lines
+        del self.vertical_horizontal_lines
+        del self.negative_slope_lines
+        del self.zero_slope_intersecting_lines
+        del self.vertical_lines_same_x
+        del self.horizontal_lines_same_y
     def test_parallel_lines(self):
-        self.assertIsNone(self.line1.intersect(self.line2))
+        line1, line2 = self.parallel_lines
+        self.assertIsNone(line1.intersect(line2))
     def test_perpendicular_lines(self):
-        line1 = Line(Point(0, 0), Point(1, 0))
-        line2 = Line(Point(0, 1), Point(1, 1))
+        line1, line2 = self.perpendicular_lines
         self.assertIsNone(line1.intersect(line2))
     def test_intersection_at_point(self):
-        line1 = Line(Point(0, 0), Point(2, 2))
-        line2 = Line(Point(0, 2), Point(2, 0))
+        line1, line2 = self.intersection_point
         intersection = line1.intersect(line2)
         self.assertIsInstance(intersection, Point)
         self.assertEqual(intersection.x, 1)
         self.assertEqual(intersection.y, 1)
     def test_identical_lines(self):
-        line1 = Line(Point(0, 0), Point(2, 2))
-        line2 = Line(Point(0, 0), Point(2, 2))
+        line1, line2 = self.identical_lines
         intersection = line1.intersect(line2)
         self.assertIsInstance(intersection, Line)
     def test_coincident_lines(self):
-        line1 = Line(Point(0, 0), Point(1, 1))
-        line2 = Line(Point(0, 0), Point(1, 1))
+        line1, line2 = self.coincident_lines
         intersection = line1.intersect(line2)
         self.assertIsInstance(intersection, Line)
     def test_vertical_and_horizontal_lines(self):
-        line1 = Line(Point(0, 0), Point(0, 2))
-        line2 = Line(Point(-1, 1), Point(1, 1))
+        line1, line2 = self.vertical_horizontal_lines
         intersection = line1.intersect(line2)
         self.assertIsInstance(intersection, Point)
         self.assertEqual(intersection.x, 0)
         self.assertEqual(intersection.y, 1)
     def test_negative_slope_lines_intersecting(self):
-        line1 = Line(Point(1, 3), Point(3, 1))
-        line2 = Line(Point(1, 1), Point(3, 3))
+        line1, line2 = self.negative_slope_lines
         intersection = line1.intersect(line2)
         self.assertIsInstance(intersection, Point)
         self.assertEqual(intersection.x, 2)
         self.assertEqual(intersection.y, 2)
     def test_lines_with_zero_slope_intersecting(self):
-        line1 = Line(Point(1, 1), Point(3, 1))
-        line2 = Line(Point(2, 2), Point(4, 2))
+        line1, line2 = self.zero_slope_intersecting_lines
         self.assertIsNone(line1.intersect(line2))
-if __name__ == '__main__':
-    unittest.main()
-# time before: 0.3s, coverage: 80%
-# time now: 0.1s, coverage 80%
-# he did a great job at optimizing without losing the coverage, which is impressive
+    def test_vertical_lines_with_same_x_coordinate(self):
+        line1, line2 = self.vertical_lines_same_x
+        intersection = line1.intersect(line2)
+        self.assertIsInstance(intersection, Line)
+    def test_horizontal_lines_with_same_y_coordinate(self):
+        line1, line2 = self.horizontal_lines_same_y
+        intersection = line1.intersect(line2)
+        self.assertIsInstance(intersection, Line)
+# time before: 0.003s, coverage: 80%
+# time now: 0.002s, coverage 78%
+# he did a decent job at optimizing without losing much coverage
 # he did group the similar tests together and removed redundant tests for better speed
 ##########################################################################################################################################
 # now let's test whether chatgpt can identify which lines of code were not tested and what approach to use to test them
