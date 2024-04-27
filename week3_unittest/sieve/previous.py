@@ -14,8 +14,5 @@ def sieve_flavius(number:int)->int:
             break
         for i in range(index-1, len(numbers), index):
             del_nums.append(numbers[i])
-        for k in numbers:
-            if del_nums.count(k)>=1:
-                numbers.remove(k)
     return numbers
 
