@@ -478,8 +478,8 @@ class TestLine(unittest.TestCase):
     def test_single_dot(self):
         with self.assertRaises(ValueError):
             Line(Point(3, 4), Point(3, 4))
-# Request1:
-# okay, can you review the unittests i made myself and tell me if they are correct?
-# (my unittests)
+        # Request1:
+        # okay, can you review the unittests i made myself and tell me if they are correct?
+        # (my unittests)
 # basically he didn't see anything wrong with them :/
 # after testing him for some time i came to think that he is unable to indentify the root of the problem
