@@ -417,6 +417,7 @@ if __name__ == '__main__':
 # he did group the similar tests together and removed redundant tests for better speed
 ##########################################################################################################################################
 # now let's test whether chatgpt can identify which lines of code were not tested and what approach to use to test them
+# -----------------------------------------------------------------------------------------------------------------------------------
     # Request1:
     # nice. can you now analyze which lines of my code were not covered by your tests?
     # GPT's response:
@@ -428,6 +429,7 @@ if __name__ == '__main__':
         # Lines 46-51: These lines handle the case where both lines have the same slope and intercept, returning None if they are coincident.
 # well, that is really inaccurate :/
 # let's give him another chance
+# -------------------------------------------------------------------------------------------------------------------------------------
     # Request:
     # not quite right, maybe try again?
     # GPT's response:
@@ -478,8 +480,17 @@ class TestLine(unittest.TestCase):
     def test_single_dot(self):
         with self.assertRaises(ValueError):
             Line(Point(3, 4), Point(3, 4))
+# -----------------------------------------------------------------------------------------------------
         # Request1:
         # okay, can you review the unittests i made myself and tell me if they are correct?
         # (my unittests)
 # basically he didn't see anything wrong with them :/
 # after testing him for some time i came to think that he is unable to indentify the root of the problem
+# alright but what about some very obvious mistakes? lets try it
+# -------------------------------------------------------------------------------------------------
+        # Request1:
+        # what abou these tests? are they ok?
+        # (the tests gpt made but with wrong calculations here and there)
+# after the first try he didn't see any problem
+# after i asked him if he was sure he identified 2 out of 3 mistakes i deliberately made
+
